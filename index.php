@@ -19,11 +19,22 @@ $arrLine = file('data/data2.txt');
 
 $tmp = [];
 foreach ($arrLine as $item) {
-    $metersexplode
-    $tmp[$item[]]
+    $meters = explode(";", $item);
+    if(isset($meters[2])) {
+        $it = round($meters[2]);
+        $tmp[$it]['count'] = isset($tmp[$it]['count'])?($tmp[$it]['count'] + 1):1;
+    }
 }
 
-?>
+d($tmp);
+
+
+
+foreach ($tmp as $item) { ?>
+    <div style="border-top: 1px solid red; width:<?=$item['count']*3;?>px" >
+
+    </div>
+<?}?>
 
 
 
