@@ -1,0 +1,14 @@
+
+{
+  "name": "bad4iz/exel",
+  "authors": [
+    {
+      "name": "bad4iz",
+      "email": "bad4iz@gmail.com"
+    }
+  ],
+  "require": {
+    "kint-php/kint": "^1.1",
+    "phpoffice/phpexcel": "^1.8"
+  }
+}
