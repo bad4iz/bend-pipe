@@ -22,7 +22,7 @@ let val = document.querySelector('#val');
 
 
 let cas = 0;
-const SCREEN_RESOLUTION = 50; // разрешение экрана
+const RANGE = 100; // разрешение экрана
 
 
 function loweringLifting(data) {
@@ -47,25 +47,30 @@ function loweringLifting(data) {
         event.preventDefault();
 
         data = data.map(item=>{
-            return  item.num == cas + SCREEN_RESOLUTION/2 ? {num: item.num, count: item.count + 1}: item;
+            return  item.num == cas - RANGE/2? {num: item.num, count: item.count + 1}: item;
         });
 
         // console.log(data);
 
         let dat = data.filter(item => {
-            return ((cas - +SCREEN_RESOLUTION) < item.num) && ((cas + +SCREEN_RESOLUTION) > item.num)
+            return ((cas - RANGE) < item.num) && ((cas + RANGE) > item.num)
         });
 
 
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Очиста всего холста
 
-        let i = 0;
 
-        dat.forEach(item => {
+        ctx.fillStyle = "red";
+        ctx.fillRect(RANGE/2, 150,10 , 50);
+
+
+        dat.forEach((item,i) => {
             ctx.fillStyle = "green";
             ctx.fillRect(i, 100,10 , item.count);
-            i +=10;
         });
+
+        console.log(cas);
+
 
     }, false);
 }
