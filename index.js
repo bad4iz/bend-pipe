@@ -12,17 +12,17 @@ fetch('server.php')
 
 
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
 
 ctx.fillStyle = "green";
 ctx.fillRect(10, 10, 100, 100);
 
-var val = document.querySelector('#val');
+let val = document.querySelector('#val');
 
 
-var cas = 0;
-
+let cas = 0;
+const SCREEN_RESOLUTION = 50; // разрешение экрана
 
 
 function loweringLifting(data) {
@@ -47,19 +47,19 @@ function loweringLifting(data) {
         event.preventDefault();
 
         data = data.map(item=>{
-            return  item.num == cas+25 ? {num: item.num, count: item.count + 1}: item;
+            return  item.num == cas + SCREEN_RESOLUTION/2 ? {num: item.num, count: item.count + 1}: item;
         });
 
         // console.log(data);
 
-        var dat = data.filter(item => {
-            return ((cas - 50) < item.num) && ((cas + 50) > item.num)
+        let dat = data.filter(item => {
+            return ((cas - +SCREEN_RESOLUTION) < item.num) && ((cas + +SCREEN_RESOLUTION) > item.num)
         });
 
 
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Очиста всего холста
 
-        var i = 0;
+        let i = 0;
 
         dat.forEach(item => {
             ctx.fillStyle = "green";

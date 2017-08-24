@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<canvas id="canvas" width="1800px" height="600px"></canvas>
+<canvas id="canvas" width="1000px" height="1000px"></canvas>
 <div id="val"></div>
 <input id="range" type="range" min="0" max="6000" step="1" value="0" style="width: 100%;">
 <script src="index.js"></script>
