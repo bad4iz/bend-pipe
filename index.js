@@ -18,46 +18,12 @@ var ctx = canvas.getContext("2d");
 ctx.fillStyle = "green";
 ctx.fillRect(10, 10, 100, 100);
 
-
-
-
-
-
-
-
-
-var range = document.querySelector('#range');
 var val = document.querySelector('#val');
 
 
 var cas = 0;
 
 
-
-function read(evtType, data) {
-    range.addEventListener(evtType, function () {
-        window.requestAnimationFrame(function () {
-            val.innerHTML = range.value;
-            var dat = data.filter(item => {
-             return ((+range.value - 100) < item.num) && ((+range.value + 100) > item.num)
-            });
-
-            console.table(dat);
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Очиста всего холста
-
-
-            var i = 0;
-            dat.forEach(item => {
-
-                ctx.fillStyle = "green";
-                ctx.fillRect(i, 100,10 , item.count);
-                i +=10;
-            });
-
-
-        });
-    });
-}
 
 function loweringLifting(data) {
     document.body.addEventListener('keydown', (event)=>{
@@ -100,10 +66,6 @@ function loweringLifting(data) {
             ctx.fillRect(i, 100,10 , item.count);
             i +=10;
         });
-
-
-
-        console.log();
 
     }, false);
 }
