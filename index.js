@@ -13,8 +13,9 @@ fetch('server.php')
 
 
 let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
-
+ ctx = canvas.getContext("2d");
+ctx.translate(300, 500);
+ctx.rotate( 180 * Math.PI / 180);
 ctx.fillStyle = "green";
 ctx.fillRect(10, 10, 100, 100);
 
@@ -23,7 +24,7 @@ let val = document.querySelector('#val');
 
 let cas = 0;
 const RANGE = 100; // разрешение экрана
-
+const MAX = 300;
 
 function loweringLifting(data) {
     document.body.addEventListener('keydown', (event)=>{
@@ -47,7 +48,7 @@ function loweringLifting(data) {
         event.preventDefault();
 
         data = data.map(item=>{
-            return  item.num == cas - RANGE/2? {num: item.num, count: item.count + 1}: item;
+            return  item.num == cas ? {num: item.num, count: item.count + 1}: item;
         });
 
         // console.log(data);
@@ -55,22 +56,29 @@ function loweringLifting(data) {
         let dat = data.filter(item => {
             return ((cas - RANGE) < item.num) && ((cas + RANGE) > item.num)
         });
-
+        ctx.globalAlpha = 1;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Очиста всего холста
 
-
-        ctx.fillStyle = "red";
-        ctx.fillRect(RANGE/2, 150,10 , 50);
-
-
         dat.forEach((item,i) => {
             ctx.fillStyle = "green";
-            ctx.fillRect(i, 100,10 , item.count);
+            ctx.fillRect(i, 10,10 , item.count);
         });
 
-        console.log(cas);
+        ctx.shadowColor = "#bbbbbb";
+        ctx.shadowBlur = 1;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+
+
+        ctx.globalAlpha = 0.5;
+        ctx.fillStyle = "red";
+        ctx.fillRect(cas>100?RANGE:cas, -1,10 , 50);
+
+
+        val.innerText = cas;
 
 
     }, false);
 }
+
